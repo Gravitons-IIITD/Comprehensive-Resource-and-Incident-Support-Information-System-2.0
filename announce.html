@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISIS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(0, 0, 33);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
+            background-color: rgb(18, 18, 62);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            color: white;
+        }
+
+        .left {
+            font-size: 1.5rem;
+        }
+
+        .arrow {
+            width: 12px;
+            height: 12px;
+        }
+
+        .neon-magenta {
+            color: #ff00ff;
+        }
+
+        .announcement {
+            margin-bottom: 40px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 80px auto;
+        }
+
+        .form-section {
+            background-color: rgb(18, 18, 62);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff00ff;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff00ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #e000e0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">CRISIS</div>
+            <div class="right">
+                <ul>
+                    <a href="/" style="color: white; text-decoration: none; font-size: 1rem;" onmouseover="this.style.color='magenta'; this.style.fontSize='1.04rem'" onmouseout="this.style.color='white'; this.style.fontSize='1rem'">
+                        <li>Home</li>
+                    </a>
+                    <a href="/" style="color: white; text-decoration: none; font-size: 1rem;" onmouseover="this.style.color='magenta'; this.style.fontSize='1.04rem'" onmouseout="this.style.color='white'; this.style.fontSize='1rem'">
+                        <li>Map</li>
+                    </a>
+                    <a href="/" style="color: white; text-decoration: none; font-size: 1rem;" onmouseover="this.style.color='magenta'; this.style.fontSize='1.04rem'" onmouseout="this.style.color='white'; this.style.fontSize='1rem'">
+                        <li>Resources</li>
+                    </a>
+                    <a href="/" style="color: white; text-decoration: none; font-size: 1rem;" onmouseover="this.style.color='magenta'; this.style.fontSize='1.04rem'" onmouseout="this.style.color='white'; this.style.fontSize='1rem'">
+                        <li>Safe Spots</li>
+                    </a>
+                    <a href="/" style="color: white; text-decoration: none; font-size: 1rem;" onmouseover="this.style.color='magenta'; this.style.fontSize='1.04rem'" onmouseout="this.style.color='white'; this.style.fontSize='1rem'">
+                        <li>Community Chat</li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="announcement">
+            <h1>Announcement Section</h1>
+            <p>This is an announcement section.</p>
+        </div>
+
+        <section class="form-section">
+            <h2>Submit Your Content</h2>
+            <form>
+                <div class="form-group">
+                    <label for="heading">Heading</label>
+                    <input type="text" id="heading" name="heading" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
