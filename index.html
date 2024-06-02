@@ -12,6 +12,7 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -58,6 +59,11 @@
         .announcement {
             margin-bottom: 40px;
         }
+
+        .container {
+            width: 60%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -95,7 +101,7 @@
                         <span class="mt-1 text-gray-500 text-sm">2023-04-13</span>
                     </div>
                     <div class="md:flex-grow">
-                        <h2 class="text-2xl font-medium neon-red title-font mb-2">Major fire break out in industry near Okhala</h2>
+                        <h2 class="text-2xl font-medium white title-font mb-2">Major fire break out in industry near Okhala</h2>
                         <p class="leading-relaxed">A major fire broke out in an industry near Okhala, causing significant damage to the property and resulting in multiple injuries. Firefighters and emergency services are on the scene, working to contain the fire and provide medical assistance to those injured.</p>
                         <a class="text-indigo-500 inline-flex items-center mt-4" style="margin-left: auto;">Learn More
                             <svg class="arrow ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -111,7 +117,7 @@
                         <span class="mt-1 text-gray-500 text-sm">2023-03-12</span>
                     </div>
                     <div class="md:flex-grow">
-                        <h2 class="text-2xl font-medium neon-red title-font mb-2">Minor earthquake of scale 4.2 hit Delhi</h2>
+                        <h2 class="text-2xl font-medium white title-font mb-2">Minor earthquake of scale 4.2 hit Delhi</h2>
                         <p class="leading-relaxed">A minor earthquake of scale 4.2 hit Delhi today, causing no harm to anyone and only minor property damage. The earthquake was quickly contained, and no further action is required.</p>
                         <a class="text-indigo-500 inline-flex items-center mt-4" style="margin-left: auto;">Learn More
                             <svg class="arrow ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -127,7 +133,6 @@
     <div class="container mx-auto px-5 mt-8">
         <form id="announcementForm" class="flex flex-wrap -m-2">
             <div class="p-2 w-full">
-                <textarea id="announcementText" class
                 <textarea id="announcementText" class="w-full bg-gray-800 rounded border border-gray-700 py-2 px-4 placeholder-gray-600 text-gray-100 focus:outline-none focus:bg-gray-900 focus:border-indigo-500 mb-4" placeholder="Enter your announcement here..."></textarea>
                 <button id="addAnnouncementBtn" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Add Announcement</button>
             </div>
@@ -155,7 +160,7 @@
                     <span class="mt-1 text-gray-500 text-sm">${getCurrentDate()}</span>
                 </div>
                 <div class="md:flex-grow">
-                    <h2 class="text-2xl font-medium neon-red title-font mb-2">${text}</h2>
+                    <h2 class="text-2xl font-medium white title-font mb-2">${text}</h2>
                     <p class="leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat nunc eget vestibulum porttitor.</p>
                     <a class="text-indigo-500 inline-flex items-center mt-4" style="margin-left: auto;">Learn More
                         <svg class="arrow ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
