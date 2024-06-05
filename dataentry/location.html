@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISIS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(0, 0, 33);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 80px;
+            background-color: rgb(18, 18, 62);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 23px;
+        }
+
+        nav ul li {
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s, font-size 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: magenta;
+            font-size: 1.04rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .announcement {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-section {
+            background-color: rgb(18, 18, 62);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ff00ff;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff00ff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #e000e0;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">CRISIS</div>
+            <div class="right">
+                <ul>
+                    <li><a href="Indexentry.html">Home</a></li>
+                    <li><a href="announce.html">Announce</a></li>
+                    <li><a href="location.html" style="color: #ff00ff;">Add Location</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="announcement">
+            <h1>Location Section</h1>
+            <p>Which location do you want to add?</p>
+        </div>
+
+        <section class="form-section">
+            <h2>Add Your Location</h2>
+            <form>
+                <div class="form-group">
+                    <label for="heading">Name</label>
+                    <input type="text" id="heading" name="heading" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Details</label>
+                    <textarea id="content" name="content" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input type="text" id="latitude" name="latitude">
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input type="text" id="longitude" name="longitude">
+                </div>
+                <div class="form-group">
+                    <label for="dropdown">Select Type</label>
+                    <div class="custom-select">
+                        <select id="dropdown" name="dropdown">
+                            <option value="">Select an option</option>
+                            <option value="option1">Danger</option>
+                            <option value="option2">Safe Spot</option>
+                            <option value="option3">Resource</option>
+                        </select>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>
