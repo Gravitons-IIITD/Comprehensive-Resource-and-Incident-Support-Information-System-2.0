@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block name %}
+Announce
+{% endblock name %}
+
+{% block announceattribute %}
+style="color: #ff00ff;"
+{% endblock announceattribute %}
+
+{% block bodyy %}
+<div class="container">
+    <div class="announcement">
+        <h1>Announcement Section</h1>
+        <p>What announcement do you want to make?</p>
+    </div>
+
+    <section class="form-section">
+        <h2>Submit Your Announcement</h2>
+        <form action="announce" method = "POST">
+            <div class="form-group">
+                <label for="heading">Heading</label>
+                <input type="text" id="heading" name="heading" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock bodyy %}

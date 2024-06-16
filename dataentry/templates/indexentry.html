@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block name %}
+Data Entry
+{% endblock name %}
+
+{% block homeattribute %}
+style="color: #ff00ff;"
+{% endblock homeattribute %}
+
+{% block bodyy %}
+<div class="container">
+    <div class="announcement">
+        <h1>Data Entry Site</h1>
+        <p>What kind of addition do you want to make?</p>
+    </div>
+
+    <section class="button-section">
+        <div class="button-container">
+            <a href="/announce" class="big-button" style="background-color: #a200ff;">
+                <h2>Announce</h2>
+            </a>
+            <a href="/location" class="big-button" style="background-color: #a200ff;">
+                <h2>Add Location</h2>
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock bodyy %}

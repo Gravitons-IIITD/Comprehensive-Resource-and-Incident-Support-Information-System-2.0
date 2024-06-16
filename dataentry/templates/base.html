@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRISIS</title>
+    <title>CRISIS - {% block name %}{% endblock name %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -32,6 +32,7 @@
 
         nav ul {
             display: flex;
+            justify-content: center;
             gap: 23px;
         }
 
@@ -85,7 +86,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
@@ -95,7 +97,8 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #ff00ff;
         }
@@ -108,10 +111,68 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .form-group button:hover {
             background-color: #e000e0;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            padding: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .big-button {
+            display: block;
+            width: calc(50% - 10px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .big-button h2 {
+            margin: 0 0 10px 0;
+        }
+
+        .big-button p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .big-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .big-button {
+                width: 100%;
+                margin-bottom: 20px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -126,10 +187,6 @@
                 height: auto;
                 padding: 10px;
             }
-
-            .left {
-                margin-bottom: 10px;
-            }
         }
     </style>
 </head>
@@ -140,37 +197,17 @@
             <div class="left">CRISIS</div>
             <div class="right">
                 <ul>
-                    <li><a href="Indexentry.html">Home</a></li>
-                    <li><a href="announce.html" style="color: #ff00ff;">Announce</a></li>
-                    <li><a href="location.html">Add Location</a></li>
+                    <li><a href="/" {% block homeattribute %}{% endblock homeattribute %}>Home</a></li>
+                    <li><a href="/announce" {% block announceattribute %}{% endblock announceattribute%}>Announce</a></li>
+                    <li><a href="/location" {% block locationattribute %}{% endblock locationattribute %}>Add Location</a></li>
                 </ul>
             </div>
         </nav>
     </header>
+    {% block bodyy %}
 
-    <div class="container">
-        <div class="announcement">
-            <h1>Announcement Section</h1>
-            <p>What announcement do you want to make?</p>
-        </div>
+    {% endblock bodyy %}
 
-        <section class="form-section">
-            <h2>Submit Your Announcement</h2>
-            <form>
-                <div class="form-group">
-                    <label for="heading">Heading</label>
-                    <input type="text" id="heading" name="heading" required>
-                </div>
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea id="content" name="content" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </section>
-    </div>
 </body>
 
 </html>
