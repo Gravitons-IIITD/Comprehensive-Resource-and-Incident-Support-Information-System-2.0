@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISIS - Safe Spots</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(0, 0, 33);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
+            background-color: rgb(18, 18, 62);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover {
+            color: magenta;
+            font-size: 1.04rem;
+        }
+
+        .left {
+            margin: 40px;
+            font-size: 1.5rem;
+        }
+
+        .arrow {
+            width: 12px;
+            height: 12px;
+        }
+
+        .neon-red {
+            color: #ff073a;
+        }
+
+        .announcement {
+            margin-bottom: 40px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 80px auto;
+        }
+
+        .new-announcement {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                height: auto;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+            }
+
+            .announcement {
+                flex-direction: column;
+            }
+
+            .md:w-64 {
+                width: 100%;
+            }
+
+            .md:flex-grow {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                margin: 40px auto;
+                padding: 0 10px;
+            }
+
+            .announcement h2 {
+                font-size: 1.5rem;
+            }
+
+            .announcement p {
+                font-size: 0.9rem;
+            }
+
+            .text-indigo-500 {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Resource Cards Styling */
+        .resource-section {
+            padding: 80px 0;
+            background-color: rgb(18, 18, 62);
+        }
+
+        .resource-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .resource-card {
+            background-color: rgb(28, 28, 84);
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(50% - 20px); /* Adjusted width for two cards per row with gap */
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-bottom: 20px; /* Added margin bottom to space out cards */
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .resource-card h2 {
+            color: #ff073a;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-card p {
+            color: white;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">CRISIS</div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Map.html">Map</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="safeplace.html">Safe Spots</a></li>
+                    <li><a href="https://crisis-chat.vercel.app/" target="_blank">Community Chat</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="resource-section">
+        <div class="container">
+            <h2 class="text-3xl font-semibold text-center mb-8">Safe Spots During Crisis</h2>
+            <div class="resource-container">
+                <!-- Safe Spot Card 1 -->
+                <div class="resource-card">
+                    <h2 class="text-xl font-semibold mb-2">Medical Centers</h2>
+                    <p class="text-gray-300">Locations where medical help and supplies are available.</p>
+                </div>
+                <!-- Safe Spot Card 2 -->
+                <div class="resource-card">
+                    <h2 class="text-xl font-semibold mb-2">Community Shelters</h2>
+                    <p class="text-gray-300">Safe shelters for individuals and families during emergencies.</p>
+                </div>
+                <!-- Safe Spot Card 3 -->
+                <div class="resource-card">
+                    <h2 class="text-xl font-semibold mb-2">Police Stations</h2>
+                    <p class="text-gray-300">Places where law enforcement personnel are available to assist.</p>
+                </div>
+                <!-- Safe Spot Card 4 -->
+                <div class="resource-card">
+                    <h2 class="text-xl font-semibold mb-2">Fire Stations</h2>
+                    <p class="text-gray-300">Emergency services for fire-related incidents and safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+
+</body>
+
+</html>
