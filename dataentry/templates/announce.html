@@ -17,7 +17,7 @@ style="color: #ff00ff;"
 
     <section class="form-section">
         <h2>Submit Your Announcement</h2>
-        <form action="announce" method = "POST">
+        <form id="announcementForm" action="announce" method="POST" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="heading">Heading</label>
                 <input type="text" id="heading" name="heading" required>
@@ -30,6 +30,21 @@ style="color: #ff00ff;"
                 <button type="submit">Submit</button>
             </div>
         </form>
+        <p id="message"></p>
     </section>
 </div>
+
+<script>
+    function validateForm() {
+        var heading = document.getElementById('heading').value;
+        var content = document.getElementById('content').value;
+
+        if (heading === '' || content === '') {
+            document.getElementById('message').innerText = "Please fill out all fields.";
+            return false;
+        }
+
+        return true;
+    }
+</script>
 {% endblock bodyy %}
