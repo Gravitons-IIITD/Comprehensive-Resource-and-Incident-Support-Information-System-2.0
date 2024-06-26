@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block name %}
+Resources
+{% endblock name %}
+
+{% block resourcesattribute %}
+style="color: #ff00ff;"  
+{% endblock resourcesattribute %}
+
+{% block bodyy %}
+<section class="resource-section">
+    <div class="container">
+        <div class="resource-container">
+            <div class="resource-card">
+                <h2>Medical Supplies</h2>
+                <p>A list of locations where you can find medical supplies during a crisis. This may include bandages, antiseptics, and other first aid items.</p>
+            </div>
+            <div class="resource-card">
+                <h2>Food Supplies</h2>
+                <p>A list of locations where you can find food supplies during a crisis. This may include non-perishable food items, water, and other essentials.</p>
+            </div>
+            <div class="resource-card">
+                <h2>Transportation Facilities</h2>
+                <p>A list of transportation facilities that are available during a crisis. This may include public transportation, emergency vehicles, and other transportation options.</p>
+            </div>
+            <div class="resource-card">
+                <h2>Evacuation Facilities</h2>
+                <p>A list of evacuation facilities that are available during a crisis. This may include shelters, community centers, and other safe spaces.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.classList.toggle('show');
+    }
+
+    // Close dropdowns if clicked outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown button')) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>   
+{% endblock bodyy %}
