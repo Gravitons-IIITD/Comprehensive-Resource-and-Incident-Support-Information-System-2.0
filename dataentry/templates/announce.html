@@ -36,14 +36,17 @@ style="color: #ff00ff;"
 
 <script>
     function validateForm() {
-        var heading = document.getElementById('heading').value;
-        var content = document.getElementById('content').value;
+        var heading = document.getElementById('heading').value.trim();
+        var content = document.getElementById('content').value.trim();
+        var message = document.getElementById('message');
 
         if (heading === '' || content === '') {
-            document.getElementById('message').innerText = "Please fill out all fields.";
+            message.innerText = "Please fill out all fields.";
+            message.style.color = 'red';
             return false;
         }
 
+        message.innerText = '';
         return true;
     }
 </script>

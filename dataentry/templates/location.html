@@ -55,24 +55,31 @@ style="color: #ff00ff;"
 
 <script>
     function validateForm() {
-        var name = document.getElementById('name').value;
-        var details = document.getElementById('details').value;
-        var latitude = document.getElementById('latitude').value;
-        var longitude = document.getElementById('longitude').value;
+        var name = document.getElementById('name').value.trim();
+        var details = document.getElementById('details').value.trim();
+        var latitude = document.getElementById('latitude').value.trim();
+        var longitude = document.getElementById('longitude').value.trim();
         var dropdown = document.getElementById('dropdown').value;
 
-        var latLongFormat = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/;
+        var latFormat = /^-?([1-8]?\d(\.\d+)?|90(\.0+)?)$/;
+        var longFormat = /^-?((1[0-7]?\d(\.\d+)?)|([1-9]?\d(\.\d+)?)|180(\.0+)?)$/;
 
-        if (name === '' || details === '' || latitude === '' || longitude === '' || dropdown === '') {
+        if (!name || !details || !latitude || !longitude || !dropdown) {
             document.getElementById('message').innerText = "Please fill out all fields.";
             return false;
         }
 
-        if (!latLongFormat.test(latitude) || !latLongFormat.test(longitude)) {
-            document.getElementById('message').innerText = "Latitude and Longitude must be in the format +12.123.";
+        if (!latFormat.test(latitude)) {
+            document.getElementById('message').innerText = "Latitude must be between -90 and 90.";
             return false;
         }
 
+        if (!longFormat.test(longitude)) {
+            document.getElementById('message').innerText = "Longitude must be between -180 and 180.";
+            return false;
+        }
+
+        document.getElementById('message').innerText = '';
         return true;
     }
 </script>
