@@ -8,7 +8,7 @@ app = Flask(__name__)
 # Get the directory of the current script
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Main database configuration
+# Main database configuration for announcements
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "announce.db")
 
 # Additional bind for location database
@@ -16,17 +16,22 @@ app.config["SQLALCHEMY_BINDS"] = {
     "location": "sqlite:///" + os.path.join(basedir, "location.db")
 }
 
+# Disable SQLAlchemy modification tracking to suppress warnings
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# Secret key for session management (replace with your actual secret key)
 app.secret_key = 'supersecretkey'
+
+# Initialize SQLAlchemy object with the Flask app
 db = SQLAlchemy(app)
 
-# Enum for LocationType
+# Enum for LocationType to categorize locations
 class LocationType(Enum):
     DANGER = 'Danger'
     SAFE = 'Safe Spot'
     RESOURCE = 'Resource'
 
-# Model for announcements
+# Model for announcements stored in the main database
 class Announce(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     heading = db.Column(db.String(100), nullable=False)
@@ -35,9 +40,9 @@ class Announce(db.Model):
     def __repr__(self) -> str:
         return f"{self.heading}"
 
-# Model for locations with a specific bind key
+# Model for locations stored in the 'location' database
 class Location(db.Model):
-    __bind_key__ = 'location'
+    __bind_key__ = 'location'  # Bind this model to the 'location' database
     sno = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     details = db.Column(db.String(500), nullable=False)
@@ -48,14 +53,16 @@ class Location(db.Model):
     def __repr__(self) -> str:
         return f"{self.name}"
 
-# Create all tables in the databases
+# Create all tables in the databases (announce.db and location.db)
 with app.app_context():
     db.create_all()
 
+# Route for the index page
 @app.route("/")
 def index():
     return render_template("indexentry.html")
 
+# Route for handling announcements (GET and POST methods)
 @app.route("/announce", methods=["GET", "POST"])
 def show_announce():
     if request.method == "POST":
@@ -66,6 +73,7 @@ def show_announce():
         db.session.commit()
     return render_template("announce.html")
 
+# Route for handling locations (GET and POST methods)
 @app.route("/location", methods=["GET", "POST"])
 def show_location():
     if request.method == "POST":
@@ -80,5 +88,6 @@ def show_location():
         db.session.commit()
     return render_template("location.html")
 
+# Run the Flask application in debug mode
 if __name__ == "__main__":
     app.run(debug=True)
