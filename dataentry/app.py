@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from enum import Enum
 
@@ -19,7 +19,7 @@ app.config["SQLALCHEMY_BINDS"] = {
 # Disable SQLAlchemy modification tracking to suppress warnings
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# Secret key for session management (replace with your actual secret key)
+# Secret key for session management 
 app.secret_key = 'supersecretkey'
 
 # Initialize SQLAlchemy object with the Flask app
@@ -87,6 +87,53 @@ def show_location():
         db.session.add(var)
         db.session.commit()
     return render_template("location.html")
+
+# Route for handling annoucement edits
+@app.route("/announcements")
+def edit_announcements():
+    entries = Announce.query.all()[::-1]
+    return render_template("announcements.html", entries = entries)
+
+# Route for handling safespot edits
+@app.route("/safespots")
+def edit_safespots():
+    entries = Location.query.filter_by(location_type='SAFE').all()
+    return render_template("safespots.html", entries = entries)
+
+# Route for handing resource edits
+@app.route("/resources")
+def edit_resources():
+    entries = Location.query.filter_by(location_type='RESOURCE').all()
+    return render_template("resources.html", entries = entries)
+
+@app.route("/delete/<int:sno>")
+def delete(sno):
+    element = Location.query.filter_by(sno = sno).first()
+    db.session.delete(element)
+    db.session.commit()
+    return redirect("/resources")
+
+@app.route("/modify/<int:sno>", methods=["GET", "POST"])
+def modify(sno):
+    if request.method == "POST":
+        name = request.form["name"]
+        details = request.form["details"]
+        longitude = request.form["longitude"]
+        latitude = request.form["latitude"]
+        location_type_str = request.form["dropdown"]
+        location_type = LocationType[location_type_str.upper()]
+        element = Location.query.filter_by(sno = sno).first()
+        element.name = name
+        element.details = details
+        element.longitude = longitude
+        element.latitude = latitude
+        element.location_type = location_type
+        db.session.add(element)
+        db.session.commit()
+        redirect("/")
+    element = Location.query.filter_by(sno = sno).first()
+    return render_template("modify.html", element = element)
+
 
 # Run the Flask application in debug mode
 if __name__ == "__main__":

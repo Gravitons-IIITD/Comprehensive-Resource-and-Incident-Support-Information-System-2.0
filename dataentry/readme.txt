@@ -1,1 +1,0 @@
-Folder with everything related to the data-entry website.

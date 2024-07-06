@@ -7,7 +7,12 @@
     <title>CRISIS - {% block name %}{% endblock name %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
         * {
             margin: 0;
@@ -25,9 +30,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
             height: 80px;
             background-color: rgb(18, 18, 62);
+            padding: 0 20px;
         }
 
         nav ul {
@@ -52,11 +57,70 @@
             font-size: 1.04rem;
         }
 
+        .left {
+            font-size: 1.5rem;
+        }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-btn div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .right {
+            display: flex;
+        }
+
+        .right ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .right.active ul {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            right: 0;
+            background-color: rgb(18, 18, 62);
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: flex;
+            }
+
+            .right {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .right.active {
+                display: flex;
+            }
+        }
+
         .container {
             width: 90%;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 80px auto;
             padding: 0 20px;
+        }
+
+        .container h2 {
+            text-align: center;
         }
 
         .announcement {
@@ -151,6 +215,7 @@
             font-size: 1.2rem;
             font-weight: 600;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #a200ff;
         }
 
         .big-button h2 {
@@ -168,8 +233,47 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
+
+        .small-button {
+            display: block;
+            width: calc(20% - 10px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #a200ff;
+        }
+
+        .small-button h2 {
+            color: #ffffff !important;
+            margin: 0 0 10px 0;
+        }
+
+        .small-button p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .small-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
         @media (max-width: 768px) {
             .big-button {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .small-button {
                 width: 100%;
                 margin-bottom: 20px;
             }
@@ -188,10 +292,104 @@
                 padding: 10px;
             }
         }
+
+        .resource-section {
+            padding: 80px 0;
+            background-color: rgb(0, 0, 33);
+        }
+
+        .resource-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .resource-card {
+            background-color: rgb(28, 28, 84);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .resource-card h2 {
+            color: #ff073a;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-card p {
+            color: white;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+
+        .popup {
+            font-size: 1.1rem;
+        }
+
+        .safe-popup {
+            color: green;
+            font-weight: bold;
+        }
+
+        .danger-popup {
+            color: red;
+            font-weight: bold;
+        }
+
+        .resource-popup {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .legend {
+            background: white;
+            line-height: 1.5;
+            padding: 24px 16px;
+            /* Increased padding */
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            width: 240px;
+            /* Increased width */
+            text-align: left;
+            /* Align text to left */
+        }
+
+        .legend i {
+            width: 36px;
+            height: 36px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
         #message {
-        color: red;
-        font-weight: bold;
-        margin-top: 10px;
+            color: #ff073a;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -200,11 +398,24 @@
     <header>
         <nav>
             <div class="left">CRISIS</div>
-            <div class="right">
+            <div class="menu-btn" id="menu-btn">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="right" id="menu">
                 <ul>
                     <li><a href="/" {% block homeattribute %}{% endblock homeattribute %}>Home</a></li>
-                    <li><a href="/announce" {% block announceattribute %}{% endblock announceattribute%}>Announce</a></li>
-                    <li><a href="/location" {% block locationattribute %}{% endblock locationattribute %}>Add Location</a></li>
+                    <li><a href="/announce" {% block announceattribute %}{% endblock announceattribute%}>Announce</a>
+                    </li>
+                    <li><a href="/location" {% block locationattribute %}{% endblock locationattribute %}>Add
+                            Location</a></li>
+                    <li><a href="/annoucements" {% block annoucementsattribute %}{% endblock annoucementsattribute %}>
+                            Edit Announcements</a></li>
+                    <li><a href="/safespots" {% block safespotsattribute %}{% endblock safespotsattribute %}>
+                            Edit Safe Spots</a></li>
+                    <li><a href="/resources" {% block resourcesattribute %}{% endblock resourcesattribute %}>
+                            Edit Resources</a></li>
                 </ul>
             </div>
         </nav>
@@ -212,6 +423,14 @@
     {% block bodyy %}
 
     {% endblock bodyy %}
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    </script>
 
 </body>
 
