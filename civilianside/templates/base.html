@@ -7,7 +7,12 @@
     <title>CRISIS - {% block name %}{% endblock name %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
         * {
             margin: 0;
@@ -23,26 +28,28 @@
 
         nav {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             height: 80px;
             background-color: rgb(18, 18, 62);
+            padding: 0 20px;
         }
 
         nav ul {
             display: flex;
             justify-content: center;
+            gap: 23px;
         }
 
         nav ul li {
             list-style: none;
-            margin: 0 23px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
             font-size: 1rem;
+            transition: color 0.3s, font-size 0.3s;
         }
 
         nav ul li a:hover {
@@ -51,80 +58,238 @@
         }
 
         .left {
-            margin: 40px;
             font-size: 1.5rem;
         }
 
-        .arrow {
-            width: 12px;
-            height: 12px;
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
         }
 
-        .neon-red {
-            color: #ff073a;
+        .menu-btn div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
         }
 
-        .announcement {
-            margin-bottom: 40px;
+        .right {
+            display: flex;
+        }
+
+        .right ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .right.active ul {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            right: 0;
+            background-color: rgb(18, 18, 62);
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: flex;
+            }
+
+            .right {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .right.active {
+                display: flex;
+            }
         }
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 80px auto;
+            padding: 0 20px;
         }
 
-        .new-announcement {
-            margin-left: auto;
-            margin-right: auto;
-            width: 90%;
+        .container h2 {
+            text-align: center;
+        }
+
+        .announcement {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-section {
+            background-color: rgb(18, 18, 62);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ff00ff;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff00ff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group button:hover {
+            background-color: #e000e0;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            padding: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .big-button {
+            display: block;
+            width: calc(50% - 10px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #a200ff;
+        }
+
+        .big-button h2 {
+            margin: 0 0 10px 0;
+        }
+
+        .big-button p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .big-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .small-button {
+            display: block;
+            width: calc(20% - 10px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #a200ff;
+        }
+
+        .small-button h2 {
+            color: #ffffff !important;
+            margin: 0 0 10px 0;
+        }
+
+        .small-button p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .small-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                height: auto;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            nav ul li a {
-                font-size: 1.2rem;
-            }
-
-            .announcement {
-                flex-direction: column;
-            }
-
-            .md\:w-64 {
+            .big-button {
                 width: 100%;
-            }
-
-            .md\:flex-grow {
-                width: 100%;
+                margin-bottom: 20px;
             }
         }
 
-        @media (max-width: 480px) {
-            .container {
+        @media (max-width: 768px) {
+            .small-button {
                 width: 100%;
-                margin: 40px auto;
-                padding: 0 10px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
             }
 
-            .announcement h2 {
-                font-size: 1.5rem;
-            }
-
-            .announcement p {
-                font-size: 0.9rem;
-            }
-
-            .text-indigo-500 {
-                font-size: 0.9rem;
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
             }
         }
 
@@ -147,7 +312,7 @@
             background-color: rgb(28, 28, 84);
             padding: 20px;
             border-radius: 10px;
-            width: calc(50% - 20px);
+            width: 90%;
             text-align: center;
             transition: transform 0.3s ease;
             margin-bottom: 20px;
@@ -173,21 +338,80 @@
             height: 600px;
             width: 100%;
         }
-    </style>
 
+        .popup {
+            font-size: 1.1rem;
+        }
+
+        .safe-popup {
+            color: green;
+            font-weight: bold;
+        }
+
+        .danger-popup {
+            color: red;
+            font-weight: bold;
+        }
+
+        .resource-popup {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .legend {
+            background: white;
+            line-height: 1.5;
+            padding: 24px 16px;
+            /* Increased padding */
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            width: 240px;
+            /* Increased width */
+            text-align: left;
+            /* Align text to left */
+        }
+
+        .legend i {
+            width: 36px;
+            height: 36px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
+        #message {
+            color: #ff073a;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <nav>
             <div class="left">CRISIS</div>
-            <div class="right">
+            <div class="menu-btn" id="menu-btn">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="right" id="menu">
                 <ul>
                     <li><a href="/" {% block homeattribute %}{% endblock homeattribute %}>Home</a></li>
                     <li><a href="/map" {% block mapattribute %}{% endblock mapattribute%}>Map</a>
                     </li>
-                    <li><a href="/resources" {% block resourcesattribute %}{% endblock resourcesattribute %}>Resources</a></li>
-                    <li><a href="/safespots" {% block safespotsattribute %}{% endblock safespotsattribute %}>Safe Spots</a></li>
+                    <li><a href="/resources" {% block resourcesattribute %}{% endblock resourcesattribute
+                            %}>Resources</a></li>
+                    <li><a href="/safespots" {% block safespotsattribute %}{% endblock safespotsattribute %}>Safe
+                            Spots</a></li>
                 </ul>
             </div>
         </nav>
@@ -195,6 +419,15 @@
     {% block bodyy %}
 
     {% endblock bodyy %}
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    </script>
 
 </body>
 
