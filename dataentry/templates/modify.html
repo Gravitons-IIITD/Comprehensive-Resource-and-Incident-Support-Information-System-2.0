@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block name %}
+Modify
+{% endblock name %}
+
+
+{% block bodyy %}
+<div class="container">
+    <div class="announcement">
+        <h1>Location Section</h1>
+        <p>Which location do you want to add?</p>
+    </div>
+
+    <section class="form-section">
+        <h2>Add Your Location</h2>
+        <form id="locationForm" action="/modify/{{element.sno}}" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" value = {{element.name}} name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="details">Details</label>
+                <textarea id="details" value = {{element.details}} name="details" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude</label>
+                <input type="text" id="latitude" value = {{element.latitude}} name="latitude" required>
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude</label>
+                <input type="text" id="longitude" value = {{element.longitude}} name="longitude" required>
+            </div>
+            <div class="form-group">
+                <label for="dropdown">Select Type</label>
+                <div class="custom-select">
+                    <select id="dropdown" name="dropdown" required>
+                        <option value="">Select an option</option>
+                        <option value="DANGER">Danger</option>
+                        <option value="SAFE">Safe Spot</option>
+                        <option value="RESOURCE">Resource</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </section>
+</div>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value.trim();
+        var details = document.getElementById('details').value.trim();
+        var latitude = document.getElementById('latitude').value.trim();
+        var longitude = document.getElementById('longitude').value.trim();
+        var dropdown = document.getElementById('dropdown').value;
+
+        var latFormat = /^-?([1-8]?\d(\.\d+)?|90(\.0+)?)$/;
+        var longFormat = /^-?((1[0-7]?\d(\.\d+)?)|([1-9]?\d(\.\d+)?)|180(\.0+)?)$/;
+
+        if (!name || !details || !latitude || !longitude || !dropdown) {
+            document.getElementById('message').innerText = "Please fill out all fields.";
+            return false;
+        }
+
+        if (!latFormat.test(latitude)) {
+            document.getElementById('message').innerText = "Latitude must be between -90 and 90.";
+            return false;
+        }
+
+        if (!longFormat.test(longitude)) {
+            document.getElementById('message').innerText = "Longitude must be between -180 and 180.";
+            return false;
+        }
+
+        document.getElementById('message').innerText = '';
+        return true;
+    }
+</script>
+{% endblock bodyy %}

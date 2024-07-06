@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block name %}
+Resources
+{% endblock name %}
+
+{% block resourcesattribute %}
+style="color: #ff00ff;"  
+{% endblock resourcesattribute %}
+
+{% block bodyy %}
+<section class="resource-section">
+    <div class="container">
+        <h2 class="text-3xl font-semibold text-center mb-8">Resources Available Nearby</h2>
+        <div class="resource-container">
+            {% for entry in entries %}
+                <div class="resource-card">
+                    <h2>{{entry.name}}</h2>
+                    <p>{{entry.details}}</p>
+                    <br>
+                    <div class="button-container">
+                        <a href="/modify/{{entry.sno}}" class="small-button"> 
+                            <h2>Modify</h2>
+                        </a>
+                        <a href="/delete/{{entry.sno}}" class="small-button">
+                            <h2>Delete</h2>
+                        </a>
+                    </div>
+                </div>  
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.classList.toggle('show');
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown button')) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>   
+{% endblock bodyy %}

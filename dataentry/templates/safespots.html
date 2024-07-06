@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block name %}
+Safe Spots
+{% endblock name %}
+
+{% block safespotsattribute %}
+style="color: #ff00ff;"
+{% endblock safespotsattribute %}
+
+{% block bodyy %}
+<section class="resource-section">
+    <div class="container">
+        <h2 class="text-3xl font-semibold text-center mb-8">Safe Spots Nearby</h2>
+        <div class="resource-container">
+            {% for entry in entries %}
+            <div class="resource-card">
+                <h2>{{entry.name}}</h2>
+                <p>{{entry.details}}</p>
+                <br>
+                <div class="button-container">
+                    <a href="/modify/{{entry.sno}}" class="small-button"> 
+                        <h2>Modify</h2>
+                    </a>
+                    <a href="/delete/{{entry.sno}}" class="small-button">
+                        <h2>Delete</h2>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock bodyy %}
