@@ -14,3 +14,24 @@ But it doesn't stop there. Our Resources Hub is your go-to source for essential 
 And when you need support the most, our Community Chat feature connects you with domain experts and fellow users. Receive personalized advice, guidance, and support, all within a one-on-one chat interface.
 
 In a world where every second counts, CRISIS is your lifeline. Stay tuned for the launch of CRISIS and be prepared for whatever comes your way. Your safety is our priority.
+
+## Overview
+
+**CRISIS** is a platform for crisis management and support, providing real-time announcements, interactive maps, and essential resources to ensure preparedness and safety during emergencies.
+
+## Technologies
+
+- **Flask**: Core application development
+- **Jinja**: Templating engine
+- **SQLAlchemy**: ORM for SQLite
+- **JavaScript**: Form validation and map integration
+- **HTML/CSS**: Website structure and design
+
+## Key Features
+
+- **SQLite3 Database**: Efficient data storage and retrieval
+- **Real-time Announcements**: Time-stamped updates for users
+- **Safe Spots and Resources**: Database of shelters, medical facilities, and resource points
+- **Interactive Map**: Displays safety spots, danger zones, and resources with real-time updates
+- **Two Flask Applications**: Separate core and admin functionalities
+- **JavaScript Validation**: Ensures data integrity with detailed error messages
