@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from enum import Enum
 import os
+from datetime import datetime
 
 # Initialize Flask application
 app = Flask(__name__)
@@ -48,10 +49,9 @@ class Announce(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     heading = db.Column(db.String(100), nullable=False)
     content = db.Column(db.String(500), nullable=False)
-
+    timestamp = db.Column(db.DateTime, default=datetime.now(), nullable=False)  # Add timestamp field
     def __repr__(self) -> str:
-        return f"{self.heading}"
-
+        return f"{self.heading} ({self.timestamp.strftime('%Y-%m-%d %H:%M')})"
 # Route for the index page
 @app.route("/")
 def index():
