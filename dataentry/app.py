@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 from enum import Enum
 
 app = Flask(__name__)
@@ -36,9 +37,11 @@ class Announce(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     heading = db.Column(db.String(100), nullable=False)
     content = db.Column(db.String(500), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.now, nullable=False)
 
     def __repr__(self) -> str:
         return f"{self.heading}"
+
 
 # Model for locations stored in the 'location' database
 class Location(db.Model):
@@ -68,7 +71,8 @@ def show_announce():
     if request.method == "POST":
         heading = request.form["heading"]
         content = request.form["content"]
-        var = Announce(heading=heading, content=content)
+        timestamp = datetime.now()  # Current timestamp
+        var = Announce(heading=heading, content=content, timestamp=timestamp)
         db.session.add(var)
         db.session.commit()
     return render_template("announce.html")
