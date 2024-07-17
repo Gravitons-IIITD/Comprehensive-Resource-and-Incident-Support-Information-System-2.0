@@ -71,7 +71,7 @@ def show_announce():
     if request.method == "POST":
         heading = request.form["heading"]
         content = request.form["content"]
-        timestamp = datetime.now()  # Current timestamp
+        timestamp = datetime.now() 
         var = Announce(heading=heading, content=content, timestamp=timestamp)
         db.session.add(var)
         db.session.commit()
