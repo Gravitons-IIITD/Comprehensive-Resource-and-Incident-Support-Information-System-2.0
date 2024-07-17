@@ -49,9 +49,11 @@ class Announce(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     heading = db.Column(db.String(100), nullable=False)
     content = db.Column(db.String(500), nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.now(), nullable=False)  # Add timestamp field
+    timestamp = db.Column(db.DateTime, default=datetime.now(), nullable=False)  
+    
     def __repr__(self) -> str:
-        return f"{self.heading} ({self.timestamp.strftime('%Y-%m-%d %H:%M')})"
+        return f"{self.heading}"
+
 # Route for the index page
 @app.route("/")
 def index():

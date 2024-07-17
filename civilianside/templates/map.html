@@ -9,25 +9,8 @@ style="color: #ff00ff;"
 {% endblock mapattribute %}
 
 {% block bodyy %}
-<div id="map"></div>
 
-{% for icon in danger %}
-<script>
-    addDangerMarker({{ icon.longitude }}, {{ icon.latitude }}, {{ icon.name }})
-</script>
-{% endfor %}
-
-{% for icon in safe %}
-<script>
-    addSafeMarker({{ icon.longitude }}, {{ icon.latitude }}, {{ icon.name }})
-</script>
-{% endfor %}
-
-{% for icon in resource %}
-<script>
-    addResourceMarker({{ icon.longitude }}, {{ icon.latitude }}, {{ icon.name }})
-</script>
-{% endfor %}
+<div id="map" style="height: 600px;"></div>
 
 <script>
     const map = L.map('map').setView([28.5082, 77.0852], 9);
@@ -92,7 +75,6 @@ style="color: #ff00ff;"
 
     // Add marker functions with custom icons
     function addDangerMarker(longitude, latitude, title) {
-        console.log("dangercalled")
         L.marker([longitude, latitude], { icon: dangerIcon, title: title })
             .addTo(map)
             .bindPopup('<div class="danger-popup"><img src="https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-red.png?raw=true" class="icon" alt="Danger Icon"/> <h2>Danger Zone</h2></div>');
@@ -114,16 +96,26 @@ style="color: #ff00ff;"
     const legend = L.control({ position: 'topleft' });
 
     legend.onAdd = function (map) {
-        const div = L.DomUtil.create('div', 'legend');
-        div.innerHTML = `
-                <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-red.png?raw=true) no-repeat center center; background-size: contain;"></i> <span style="line-height: 36px;">Danger</span><br>
-                <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-green.png?raw=true) no-repeat center center; background-size: contain;"></i> <span style="line-height: 36px;">Safe</span><br>
-                <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-blue.png?raw=true) no-repeat center center; background-size: contain;"></i> <span style="line-height: 36px;">Resource</span><br>
-                <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-black.png?raw=true) no-repeat center center; background-size: contain;"></i> <span style="line-height: 36px;">Your Location</span><br>
-            `;
-        return div;
-    };
+    const div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = `
+            <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-red.png?raw=true) no-repeat center center !important; background-size: contain !important;"></i> <span style="line-height: 36px !important;">Danger</span><br>
+            <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-green.png?raw=true) no-repeat center center !important; background-size: contain !important;"></i> <span style="line-height: 36px !important;">Safe</span><br>
+            <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-blue.png?raw=true) no-repeat center center !important; background-size: contain !important;"></i> <span style="line-height: 36px !important;">Resource</span><br>
+            <i style="background: url(https://github.com/pointhi/leaflet-color-markers/blob/master/img/marker-icon-black.png?raw=true) no-repeat center center !important; background-size: contain !important;"></i> <span style="line-height: 36px !important;">Your Location</span><br>
+        `;
+    return div;
+};
 
     legend.addTo(map);
+
+    {% for icon in danger %}
+        addDangerMarker({{ icon.latitude }}, {{ icon.longitude }}, "{{ icon.name }}");
+    {% endfor %}
+    {% for icon in safe %}
+        addSafeMarker({{ icon.latitude }}, {{ icon.longitude }}, "{{ icon.name }}");
+    {% endfor %}
+    {% for icon in resource %}
+        addResourceMarker({{ icon.latitude }}, {{ icon.longitude }}, "{{ icon.name }}");
+    {% endfor %}
 </script>
 {% endblock bodyy %}
