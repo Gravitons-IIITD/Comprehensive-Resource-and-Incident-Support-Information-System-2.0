@@ -95,13 +95,13 @@ pip3 install flask sqlalchemy
 cd Comprehensive-Resource-and-Incident-Support-Information-System-2.0
 
 5. To run the admin application: 
-cd dataentry
+cd dataentry...........
 python3 app.py
 
 6. To run the civilian application:
-cd civilianside
+cd civilianside.............
 python3 app.py
 
 7. Access the applications through your web browser:
 - Admin application: http://localhost:5000 (or the port specified in the dataentry/app.py)
-- Civilian application: http://localhost:5000 (or the port specified in the civilianside/app.py)
+- Civilian application: http://localhost:8000 (or the port specified in the civilianside/app.py)
